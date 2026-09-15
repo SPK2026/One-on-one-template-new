@@ -1,1 +1,1475 @@
-# One-on-one-template-new
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly 1-on-1 Performance Form with Advanced AI Enhancer</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --border-color: #dcdfe6;
+            --met-color: #27ae60;
+            --not-met-color: #c0392b;
+            --ai-color: #8e44ad;
+            --ai-hover: #732d91;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .discussion-table, .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            table-layout: auto;
+        }
+
+        .discussion-table th, .discussion-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .kpi-table th, .kpi-table td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.88rem;
+        }
+
+        .kpi-table td:first-child, .kpi-table th:first-child {
+            text-align: left;
+        }
+
+        .discussion-table th, .kpi-table th {
+            background-color: #f1f4f8;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .kpi-input, .kpi-table input[type="text"], .kpi-table input[type="number"], .kpi-table select {
+            width: 95%;
+            max-width: 120px;
+            text-align: center;
+            font-weight: bold;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 0.85rem;
+        }
+
+        .kpi-table input.kpi-name-input {
+            max-width: 100%;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .status-cell {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .met-text {
+            color: var(--met-color) !important;
+            font-weight: bold;
+        }
+
+        .not-met-text {
+            color: var(--not-met-color) !important;
+            font-weight: bold;
+        }
+
+        /* Scorecard Banner */
+        .scorecard-box {
+            background: #f4f6f9;
+            border: 2px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .scorecard-title {
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--primary-color);
+        }
+
+        .scorecard-val {
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        .add-kpi-card {
+            background: #eef7fc;
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .add-kpi-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .bullet-input {
+            width: 100%;
+            height: 110px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .ai-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0eaf8;
+            padding: 8px 12px;
+            border-radius: 0 0 6px 6px;
+            border: 1px solid #dcd0e8;
+            border-top: none;
+            flex-wrap: wrap;
+        }
+
+        .ai-toolbar label {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--ai-color);
+            font-weight: bold;
+        }
+
+        .ai-select {
+            font-size: 0.82rem;
+            padding: 4px 8px;
+            border: 1px solid #c3b1d8;
+            border-radius: 4px;
+            background: #fff;
+        }
+
+        .btn-ai {
+            background-color: var(--ai-color);
+            color: white;
+            font-size: 0.82rem;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+
+        .btn-ai:hover {
+            background-color: var(--ai-hover);
+        }
+
+        .btn-summary {
+            background-color: #2e7d32;
+            color: white;
+            font-size: 0.82rem;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+
+        .btn-summary:hover {
+            background-color: #1b5e20;
+        }
+
+        .btn-add {
+            background-color: #27ae60;
+            color: white;
+            font-size: 0.88rem;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-add:hover {
+            background-color: #219150;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #c0392b;
+        }
+
+        .subject-box {
+            background: #eef7fc;
+            border: 1px solid var(--accent-color);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .subject-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+            word-break: break-all;
+        }
+
+        #emailPreview {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed var(--accent-color);
+            background: #fafafa;
+        }
+
+        #emailContent {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #ffffff;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Monthly 1-on-1 Performance Form</h1>
+
+    <form id="oneOnOneForm">
+        <!-- General Information -->
+        <div class="section-title">General Information</div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label for="employeeName">Name *</label>
+                <input type="text" id="employeeName" required placeholder="e.g. Jane Doe">
+            </div>
+            <div class="form-group">
+                <label for="lob">Line of Business (LOB) *</label>
+                <select id="lob" required>
+                    <option value="">Select LOB</option>
+                    <option value="FL Chat">FL Chat</option>
+                    <option value="FL Voice">FL Voice</option>
+                    <option value="FL support">FL support</option>
+                    <option value="SC Queues">SC Queues</option>
+                    <option value="SC Chat">SC Chat</option>
+                    <option value="SC support">SC support</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="form-group">
+                <label for="monthSelect">Month *</label>
+                <select id="monthSelect" required>
+                    <option value="">Select Month</option>
+                    <option>January</option><option>February</option><option>March</option>
+                    <option>April</option><option>May</option><option>June</option>
+                    <option>July</option><option>August</option><option>September</option>
+                    <option>October</option><option>November</option><option>December</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="yearInput">Year *</label>
+                <input type="number" id="yearInput" required min="2020" max="2099">
+            </div>
+            <div class="form-group">
+                <label for="oneOnOneDate">1-on-1 Date</label>
+                <input type="date" id="oneOnOneDate" required>
+            </div>
+        </div>
+
+        <!-- Discussion Topics -->
+        <div class="section-title">Discussion Topics & Voice of Employee (VOE)</div>
+        <table class="discussion-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Type</th>
+                    <th style="width: 65%;">Select Question</th>
+                    <th style="width: 15%;">Rating (1-4)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="disc-row" data-category="Engagement & Well-being">
+                    <td><strong>Engagement & Well-being</strong></td>
+                    <td>
+                        <select class="q-select" style="width: 100%;">
+                            <option value="">-- Select Question --</option>
+                            <option value="Q1: How are you feeling about work overall this week/month — motivated, stressed, or somewhere in between?">Q1: How are you feeling about work overall this week/month — motivated, stressed, or somewhere in between?</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="q-rating" style="width: 100%;">
+                            <option value="">Rate</option>
+                            <option value="1">1 (Lowest)</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4 (Highest)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="disc-row" data-category="Support">
+                    <td><strong>Support</strong></td>
+                    <td>
+                        <select class="q-select" style="width: 100%;">
+                            <option value="">-- Select Question --</option>
+                            <option value="Q1: Do you feel you had the right information and support to do your job effectively?">Q1: Do you feel you had the right information and support to do your job effectively?</option>
+                            <option value="Q2: Is there anything blocking your performance right now that we should address?">Q2: Is there anything blocking your performance right now that we should address?</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="q-rating" style="width: 100%;">
+                            <option value="">Rate</option>
+                            <option value="1">1 (Lowest)</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4 (Highest)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="disc-row" data-category="Learning">
+                    <td><strong>Learning</strong></td>
+                    <td>
+                        <select class="q-select" style="width: 100%;">
+                            <option value="">-- Select Question --</option>
+                            <option value="Q1: What went well in your interactions this month? Any tasks or projects you're particularly proud of?">Q1: What went well in your interactions this month? Any tasks or projects you're particularly proud of?</option>
+                            <option value="Q2: Any challenges you faced while managing operations or interactions?">Q2: Any challenges you faced while managing operations or interactions?</option>
+                            <option value="Q3: Were there any escalations or difficult conversations you'd like feedback on?">Q3: Were there any escalations or difficult conversations you'd like feedback on?</option>
+                            <option value="Q4: Is there any skill you feel you need more coaching or practice on?">Q4: Is there any skill you feel you need more coaching or practice on?</option>
+                            <option value="Q5: Did you try any new approach or technique that worked well?">Q5: Did you try any new approach or technique that worked well?</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="q-rating" style="width: 100%;">
+                            <option value="">Rate</option>
+                            <option value="1">1 (Lowest)</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4 (Highest)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="disc-row" data-category="Aspirations & Growth">
+                    <td><strong>Aspirations & Growth</strong></td>
+                    <td>
+                        <select class="q-select" style="width: 100%;">
+                            <option value="">-- Select Question --</option>
+                            <option value="Q1: What skill or area would you like to improve over the next month?">Q1: What skill or area would you like to improve over the next month?</option>
+                            <option value="Q2: Do you have clear understanding of team operational priorities and goals?">Q2: Do you have clear understanding of team operational priorities and goals?</option>
+                            <option value="Q3: Where do you see yourself growing in the team over the next 3–6 months?">Q3: Where do you see yourself growing in the team over the next 3–6 months?</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="q-rating" style="width: 100%;">
+                            <option value="">Rate</option>
+                            <option value="1">1 (Lowest)</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4 (Highest)</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Voice of Employee Text Area -->
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="voe">Voice of Employee (VOE)</label>
+            <textarea id="voe" class="bullet-input" spellcheck="true" placeholder="Enter feedback, thoughts, or discussion notes..."></textarea>
+            <div class="ai-toolbar">
+                <label>✨ AI Enhancer Options:</label>
+                <select id="voe_style" class="ai-select">
+                    <option value="formal">Formal & Professional Bullets</option>
+                    <option value="executive">Executive Paragraph</option>
+                    <option value="constructive">Constructive & Professional</option>
+                </select>
+                <button type="button" class="btn-ai" onclick="enhanceText('voe', 'voe_style')">🪄 Enhance Grammar & Paraphrase</button>
+            </div>
+        </div>
+
+        <!-- KPI Performance Summary -->
+        <div class="section-title">
+            <span>KPI Performance Summary</span>
+        </div>
+
+        <!-- Add Custom KPI Form -->
+        <div class="add-kpi-card">
+            <strong style="color: var(--primary-color); display: block; margin-bottom: 10px;">➕ Add Additional KPI Field</strong>
+            <div class="add-kpi-grid">
+                <div>
+                    <label style="font-size:0.78rem;">KPI Name</label>
+                    <input type="text" id="new_kpi_name" placeholder="e.g. First Response Time" style="width:100%; max-width:none; text-align:left;">
+                </div>
+                <div>
+                    <label style="font-size:0.78rem;">Format</label>
+                    <select id="new_kpi_type" style="width:100%; max-width:none;">
+                        <option value="num">Number</option>
+                        <option value="pct">Percentage (%)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:0.78rem;">Goal Direction</label>
+                    <select id="new_kpi_dir" style="width:100%; max-width:none;">
+                        <option value="more">Higher is Better (≥ Target)</option>
+                        <option value="less">Lower is Better (≤ Target)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:0.78rem;">Target Value</label>
+                    <input type="text" id="new_kpi_target" placeholder="e.g. 95 or 300" style="width:100%; max-width:none;">
+                </div>
+                <div>
+                    <label style="font-size:0.78rem;">Preserve KPI</label>
+                    <select id="new_kpi_preserve" style="width:100%; max-width:none;">
+                        <option value="true">Yes (Save permanently)</option>
+                        <option value="false">No (This form only)</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="btn-add" onclick="addNewKPIFromForm()">Insert KPI</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Scorecard Banner -->
+        <div class="scorecard-box">
+            <span class="scorecard-title">Overall KPI Score:</span>
+            <span id="scorecardDisplay" class="scorecard-val">0 / 0 Met (0%)</span>
+        </div>
+
+        <table class="kpi-table" id="kpiTable">
+            <thead>
+                <tr>
+                    <th style="text-align: left; width: 28%;">Metric</th>
+                    <th style="width: 14%;">Target</th>
+                    <th style="width: 15%;">Actual Score</th>
+                    <th style="width: 13%;">Variance</th>
+                    <th style="width: 12%;">% Scored</th>
+                    <th style="width: 12%;">Status</th>
+                    <th style="width: 6%;">Action</th>
+                </tr>
+            </thead>
+            <tbody id="kpiTableBody">
+                <!-- System Default Volume Metrics -->
+                <tr data-non-kpi="true">
+                    <td style="text-align: left;">Total Transactions</td>
+                    <td>-</td>
+                    <td><input type="number" id="total_transactions" oninput="calculateLossPer1k()" placeholder="e.g. 500"></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-non-kpi="true">
+                    <td style="text-align: left;">Total TG & RLs</td>
+                    <td>-</td>
+                    <td><input type="number" id="total_tg_rl" oninput="calculateLossPer1k()" placeholder="e.g. 10"></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+
+                <!-- Default Evaluated KPIs -->
+                <tr id="row_loss" data-kpi="Loss per 1k Transactions" data-type="num" data-dir="less" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Loss per 1k Transactions" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" id="target_loss" onblur="formatTargetField(this, 'num')" oninput="calculateLossPer1k()" placeholder="Enter Target"></td>
+                    <td><input type="text" id="kpi_loss" class="kpi-input" readonly placeholder="Auto-calc"></td>
+                    <td id="variance_loss">-</td>
+                    <td id="pct_loss">-</td>
+                    <td id="status_loss" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr id="row_aht" data-kpi="AHT" data-type="num" data-dir="less" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="AHT (seconds)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" id="target_aht" onblur="formatTargetField(this, 'secs')" oninput="processKPI(document.getElementById('kpi_aht'))" placeholder="Enter Secs"></td>
+                    <td><input type="text" id="kpi_aht" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 980"></td>
+                    <td id="variance_aht">-</td>
+                    <td id="pct_aht">-</td>
+                    <td id="status_aht" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="Transfers" data-type="pct" data-target="4" data-dir="less" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Transfers (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="< 4%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_transfers" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 3.2"></td>
+                    <td id="variance_transfers">-</td>
+                    <td id="pct_transfers">-</td>
+                    <td id="status_transfers" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="Support Placement" data-type="pct" data-target="5" data-dir="less" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Support Placement (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="< 5%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_support" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 4.1"></td>
+                    <td id="variance_support">-</td>
+                    <td id="pct_support">-</td>
+                    <td id="status_support" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr id="row_productivity" data-kpi="Productivity" data-type="pct" data-dir="more" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Productivity (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" id="target_productivity" onblur="formatTargetField(this, 'pct')" oninput="processKPI(document.getElementById('kpi_productivity'))" placeholder="Enter Target %"></td>
+                    <td><input type="text" id="kpi_productivity" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 94"></td>
+                    <td id="variance_productivity">-</td>
+                    <td id="pct_productivity">-</td>
+                    <td id="status_productivity" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr id="row_shrinkage" data-kpi="In-Office Shrinkage" data-type="pct" data-dir="less" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="In-Office Shrinkage (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" id="target_shrinkage" onblur="formatTargetField(this, 'pct')" oninput="processKPI(document.getElementById('kpi_shrinkage'))" placeholder="Enter Target %"></td>
+                    <td><input type="text" id="kpi_shrinkage" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 10"></td>
+                    <td id="variance_shrinkage">-</td>
+                    <td id="pct_shrinkage">-</td>
+                    <td id="status_shrinkage" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="Absence" data-type="pct" data-target="12.50" data-dir="less" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Absence (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="< 12.50%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_absence" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 2"></td>
+                    <td id="variance_absence">-</td>
+                    <td id="pct_absence">-</td>
+                    <td id="status_absence" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="CSAT Overall" data-type="pct" data-target="68" data-dir="more" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="CSAT Score - Overall (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="68%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_csat_overall" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 72"></td>
+                    <td id="variance_csat_overall">-</td>
+                    <td id="pct_csat_overall">-</td>
+                    <td id="status_csat_overall" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="CSAT Booking" data-type="pct" data-target="70" data-dir="more" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="CSAT Score - Booking (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="70%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_csat_booking" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 75"></td>
+                    <td id="variance_csat_booking">-</td>
+                    <td id="pct_csat_booking">-</td>
+                    <td id="status_csat_booking" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="CSAT English" data-type="pct" data-target="65" data-dir="more" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="CSAT Score - English (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="65%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_csat_english" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 68"></td>
+                    <td id="variance_csat_english">-</td>
+                    <td id="pct_csat_english">-</td>
+                    <td id="status_csat_english" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+                <tr data-kpi="Quality Scores" data-type="pct" data-target="92.5" data-dir="more" data-system="true">
+                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Quality Scores (%)" onchange="saveKPIStructure()"></td>
+                    <td><input type="text" value="92.5%" onblur="updateRowTargetFromInput(this)"></td>
+                    <td><input type="text" id="kpi_quality" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 95"></td>
+                    <td id="variance_quality">-</td>
+                    <td id="pct_quality">-</td>
+                    <td id="status_quality" class="status-cell">-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Qualitative Observations & Feedback -->
+        <div class="section-title">Qualitative Observations & Feedback</div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="observations">Observations</label>
+            <textarea id="observations" class="bullet-input" spellcheck="true" placeholder="Enter observations or click below to auto-generate from KPI entries..."></textarea>
+            <div class="ai-toolbar">
+                <button type="button" class="btn-summary" onclick="generateKPIObservationSummary()">📊 Auto-Generate KPI Summary Line</button>
+                <span style="border-left: 1px solid #ccc; height: 18px; margin: 0 4px;"></span>
+                <label>✨ AI Options:</label>
+                <select id="obs_style" class="ai-select">
+                    <option value="formal">Formal & Professional Bullets</option>
+                    <option value="executive">Executive Summary</option>
+                    <option value="constructive">Constructive Feedback Tone</option>
+                </select>
+                <button type="button" class="btn-ai" onclick="enhanceText('observations', 'obs_style')">🪄 Enhance Grammar & Paraphrase</button>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="feedback">Feedback / Appreciation (Enter each bullet on a new line)</label>
+            <textarea id="feedback" class="bullet-input" spellcheck="true" placeholder="• Great leadership shown during peak operational hours&#10;• Appreciated for proactive team support and quick resolution"></textarea>
+            <div class="ai-toolbar">
+                <label>✨ AI Enhancer Options:</label>
+                <select id="fb_style" class="ai-select">
+                    <option value="formal">Formal Professional Appreciation</option>
+                    <option value="executive">Executive Summary</option>
+                    <option value="constructive">Constructive Guidance</option>
+                </select>
+                <button type="button" class="btn-ai" onclick="enhanceText('feedback', 'fb_style')">🪄 Enhance Grammar & Paraphrase</button>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-container">
+            <button type="button" class="btn-secondary" onclick="clearForm()">Clear Everything</button>
+            <button type="button" class="btn-primary" onclick="generateEmailPreview()">Generate Email Summary</button>
+        </div>
+    </form>
+
+    <!-- Email Output Preview -->
+    <div id="emailPreview">
+        <h2>Formatted Summary (Ready to Copy)</h2>
+        
+        <div class="subject-box">
+            <div>
+                <span style="font-size: 0.85rem; color: #666; display: block; margin-bottom: 2px;">Email Subject Line:</span>
+                <span id="subjectText" class="subject-text">1-on-1 Performance Summary | Name - LOB - Month Year</span>
+            </div>
+            <button type="button" class="btn-primary" style="font-size: 0.85rem; padding: 6px 12px; white-space: nowrap;" onclick="copySubjectLine()">📋 Copy Subject Line</button>
+        </div>
+
+        <p>Click the button below to copy the body, then paste (Ctrl+V) directly into your email body in Outlook.</p>
+        
+        <div id="emailContent"></div>
+
+        <div class="btn-container">
+            <button type="button" class="btn-primary" onclick="copyToClipboard()">📋 Copy Email Body Format</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let customKpiCounter = 0;
+
+    window.onload = function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('oneOnOneDate').value = today;
+        
+        const dateObj = new Date();
+        const currentMonth = dateObj.toLocaleString('default', { month: 'long' });
+        document.getElementById('monthSelect').value = currentMonth;
+        document.getElementById('yearInput').value = dateObj.getFullYear();
+
+        loadPreservedKPIs();
+        updateScorecard();
+    };
+
+    /* Dynamic Target Update Helper */
+    function updateRowTargetFromInput(input) {
+        const tr = input.closest('tr');
+        if (!tr) return;
+        let val = input.value.trim();
+        let num = parseFloat(val.replace(/[^\d.]/g, ''));
+        if (!isNaN(num)) {
+            tr.dataset.target = num;
+        }
+        const actualInput = tr.querySelector('.kpi-input');
+        if (actualInput && actualInput.value) {
+            processKPI(actualInput);
+        } else {
+            updateScorecard();
+        }
+        saveKPIStructure();
+    }
+
+    /* KPI Addition & LocalStorage Preservation */
+    function addNewKPIFromForm() {
+        const nameInput = document.getElementById('new_kpi_name');
+        const typeSelect = document.getElementById('new_kpi_type');
+        const dirSelect = document.getElementById('new_kpi_dir');
+        const targetInput = document.getElementById('new_kpi_target');
+        const preserveSelect = document.getElementById('new_kpi_preserve');
+
+        const kpiName = nameInput.value.trim();
+        if (!kpiName) {
+            alert('Please enter a KPI Name.');
+            return;
+        }
+
+        const type = typeSelect.value;
+        const dir = dirSelect.value;
+        const rawTarget = targetInput.value.trim();
+        const numTarget = parseFloat(rawTarget.replace(/[^\d.]/g, ''));
+        const isPreserved = preserveSelect.value === 'true';
+
+        addKPIRowToTable({
+            id: 'custom_kpi_' + (++customKpiCounter),
+            name: kpiName,
+            type: type,
+            dir: dir,
+            target: isNaN(numTarget) ? '' : numTarget,
+            rawTargetStr: rawTarget,
+            preserved: isPreserved
+        });
+
+        if (isPreserved) {
+            saveKPIStructure();
+        }
+
+        nameInput.value = '';
+        targetInput.value = '';
+        updateScorecard();
+    }
+
+    function addKPIRowToTable(kpi) {
+        const tbody = document.getElementById('kpiTableBody');
+        const tr = document.createElement('tr');
+        tr.id = kpi.id;
+        tr.dataset.kpi = kpi.name;
+        tr.dataset.type = kpi.type;
+        tr.dataset.dir = kpi.dir;
+        tr.dataset.preserved = kpi.preserved ? "true" : "false";
+        if (kpi.target !== '' && !isNaN(kpi.target)) {
+            tr.dataset.target = kpi.target;
+        }
+
+        let formattedTargetDisplay = kpi.rawTargetStr || (kpi.target ? (kpi.type === 'pct' ? kpi.target + '%' : kpi.target) : '');
+
+        tr.innerHTML = `
+            <td style="text-align: left;">
+                <input type="text" class="kpi-name-input" value="${kpi.name}" onchange="saveKPIStructure()">
+            </td>
+            <td>
+                <input type="text" value="${formattedTargetDisplay}" placeholder="Target" onblur="updateRowTargetFromInput(this)">
+            </td>
+            <td>
+                <input type="text" class="kpi-input" onblur="processKPI(this)" placeholder="${kpi.type === 'pct' ? 'e.g. 95' : 'e.g. 10'}">
+            </td>
+            <td class="variance-cell">-</td>
+            <td class="pct-cell">-</td>
+            <td class="status-cell">-</td>
+            <td>
+                <button type="button" class="btn-delete" onclick="deleteKPIRow('${kpi.id}')">✕</button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    }
+
+    function deleteKPIRow(rowId) {
+        const tr = document.getElementById(rowId);
+        if (tr && confirm('Are you sure you want to remove this KPI?')) {
+            tr.remove();
+            saveKPIStructure();
+            updateScorecard();
+        }
+    }
+
+    function saveKPIStructure() {
+        let preservedKPIs = [];
+        document.querySelectorAll('#kpiTableBody tr').forEach(tr => {
+            if (tr.dataset.preserved === 'true') {
+                const nameInput = tr.querySelector('.kpi-name-input');
+                const targetInput = tr.cells[1].querySelector('input');
+                
+                preservedKPIs.push({
+                    id: tr.id,
+                    name: nameInput ? nameInput.value : tr.dataset.kpi,
+                    type: tr.dataset.type,
+                    dir: tr.dataset.dir,
+                    target: tr.dataset.target || '',
+                    rawTargetStr: targetInput ? targetInput.value : '',
+                    preserved: true
+                });
+            }
+        });
+        localStorage.setItem('custom_preserved_kpis', JSON.stringify(preservedKPIs));
+    }
+
+    function loadPreservedKPIs() {
+        const saved = localStorage.getItem('custom_preserved_kpis');
+        if (!saved) return;
+
+        try {
+            const list = JSON.parse(saved);
+            list.forEach(kpi => {
+                if (!document.getElementById(kpi.id)) {
+                    addKPIRowToTable(kpi);
+                }
+            });
+        } catch(e) {
+            console.error('Failed to parse preserved KPIs', e);
+        }
+    }
+
+    /* Scorecard Calculation */
+    function updateScorecard() {
+        let totalKPIs = 0;
+        let metKPIs = 0;
+
+        document.querySelectorAll('#kpiTable tbody tr').forEach(tr => {
+            if (tr.dataset.nonKpi === 'true') return;
+
+            const statusCell = tr.querySelector('.status-cell');
+            if (statusCell) {
+                const status = statusCell.textContent.trim();
+                if (status === 'MET' || status === 'NOT MET') {
+                    totalKPIs++;
+                    if (status === 'MET') {
+                        metKPIs++;
+                    }
+                }
+            }
+        });
+
+        const scorecardEl = document.getElementById('scorecardDisplay');
+
+        if (totalKPIs === 0) {
+            scorecardEl.innerHTML = `<span style="color: #666; font-weight: bold;">0 / 0 Met (0%)</span>`;
+            return { metKPIs, totalKPIs, pctVal: 0, colorCode: '#666666' };
+        }
+
+        const pctVal = Math.round((metKPIs / totalKPIs) * 100);
+
+        let colorCode = '#c0392b'; // Red
+        if (pctVal >= 90) {
+            colorCode = '#27ae60'; // Green
+        } else if (pctVal >= 75) {
+            colorCode = '#d35400'; // Amber
+        }
+
+        scorecardEl.innerHTML = `<span style="color: ${colorCode}; font-weight: bold;">${metKPIs} / ${totalKPIs} Met (${pctVal}%)</span>`;
+
+        return { metKPIs, totalKPIs, pctVal, colorCode };
+    }
+
+    /* Auto-Generate KPI Observation Summary */
+    function generateKPIObservationSummary() {
+        let generatedBullets = [];
+
+        document.querySelectorAll('.kpi-table tbody tr').forEach(tr => {
+            if (tr.dataset.nonKpi === 'true') return;
+
+            const cells = tr.cells;
+            if (cells.length < 6) return;
+
+            const nameInput = cells[0].querySelector('input');
+            const metricName = nameInput ? nameInput.value.trim() : cells[0].innerText.trim();
+            
+            let targetText = cells[1].innerText.trim();
+            const targetInput = cells[1].querySelector('input');
+            if (targetInput) targetText = targetInput.value.trim();
+
+            let actualText = '';
+            const actualInput = cells[2].querySelector('input');
+            if (actualInput) actualText = actualInput.value.trim();
+            else actualText = cells[2].innerText.trim();
+
+            const varianceText = cells[3].textContent.trim();
+            const pctText = cells[4].textContent.trim();
+            const statusText = cells[5].textContent.trim();
+
+            if (actualText && actualText !== '-' && actualText !== 'N/A' && targetText && targetText !== '-') {
+                let comparison = statusText === 'NOT MET' ? 'below' : 'meeting / exceeding';
+                if (tr.dataset.dir === 'less' || metricName.toLowerCase().includes('aht') || metricName.toLowerCase().includes('loss')) {
+                    comparison = statusText === 'NOT MET' ? 'higher than' : 'within / beating';
+                }
+
+                let line = `• ${metricName} is ${comparison} target: against the ${targetText} target, performance was ${actualText} (Variance: ${varianceText}, Scored: ${pctText}).`;
+                generatedBullets.push(line);
+            }
+        });
+
+        if (generatedBullets.length === 0) {
+            alert('Please fill in KPI Targets and Actual Scores first to auto-generate the summary.');
+            return;
+        }
+
+        const obsField = document.getElementById('observations');
+        let currentText = obsField.value.trim();
+        let newSummary = generatedBullets.join('\n');
+
+        if (currentText) {
+            obsField.value = currentText + '\n' + newSummary;
+        } else {
+            obsField.value = newSummary;
+        }
+
+        alert('KPI Observation Summary auto-generated into the Observations field!');
+    }
+
+    /* AI Grammar & Paraphrase Enhancer */
+    function enhanceText(elementId, styleSelectId) {
+        const field = document.getElementById(elementId);
+        let text = field.value.trim();
+        const style = document.getElementById(styleSelectId).value;
+
+        if (!text) {
+            alert("Please enter text first before enhancing.");
+            return;
+        }
+
+        const corrections = [
+            [/\bgrammer\b/gi, "grammar"],
+            [/\bspellings\b/gi, "spelling"],
+            [/\bteh\b/gi, "the"],
+            [/\brecieve\b/gi, "receive"],
+            [/\bacording\b/gi, "according"],
+            [/\btaht\b/gi, "that"],
+            [/\bseperated\b/gi, "separated"],
+            [/\bdont\b/gi, "don't"],
+            [/\bcant\b/gi, "can't"],
+            [/\bwont\b/gi, "won't"],
+            [/\bisnt\b/gi, "isn't"],
+            [/\barent\b/gi, "aren't"],
+            [/\bwaht\b/gi, "what"],
+            [/\bwrk\b/gi, "work"],
+            [/\bgud\b/gi, "good"],
+            [/\bbtwr\b/gi, "better"],
+            [/\bperfomance\b/gi, "performance"],
+            [/\btransations\b/gi, "transactions"],
+            [/\bcustmer\b/gi, "customer"],
+            [/\bcustmers\b/gi, "customers"],
+            [/\bescaltion\b/gi, "escalation"],
+            [/\bescaltions\b/gi, "escalations"],
+            [/\bcoaching\b/gi, "coaching"],
+            [/\bmanagr\b/gi, "manager"],
+            [/\bmsge\b/gi, "message"],
+            [/\bchatt\b/gi, "chat"],
+            [/\bcooperat\b/gi, "cooperate"],
+
+            [/\bdid good\b/gi, "demonstrated strong performance"],
+            [/\bdoing good\b/gi, "performing effectively"],
+            [/\bgreat job\b/gi, "exhibited commendable dedication"],
+            [/\bneeds work\b/gi, "requires further development"],
+            [/\bhard time\b/gi, "encountered difficulties with"],
+            [/\btried to\b/gi, "made proactive efforts to"],
+            [/\bnot good\b/gi, "below targeted expectations"],
+            [/\bvery bad\b/gi, "requiring immediate improvement"],
+            [/\btalked about\b/gi, "discussed and reviewed"],
+            [/\bhelped out\b/gi, "assisted effectively"],
+            [/\bgot angry\b/gi, "became escalated"],
+            [/\bno issue\b/gi, "maintained seamless operations"]
+        ];
+
+        corrections.forEach(([pattern, replacement]) => {
+            text = text.replace(pattern, replacement);
+        });
+
+        text = text.replace(/\bi\b/g, "I");
+
+        let lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+        let processedLines = lines.map(line => {
+            let clean = line.replace(/^[•\-\*]\s*/, '').trim();
+            clean = clean.charAt(0).toUpperCase() + clean.slice(1);
+
+            if (!/[.!?]$/.test(clean)) {
+                clean += ".";
+            }
+
+            if (style === "formal") {
+                return "• " + clean;
+            } else if (style === "constructive") {
+                clean = clean.replace(/Failed to/i, "Identified an opportunity to enhance")
+                             .replace(/Needs to improve/i, "Encouraged focused development in")
+                             .replace(/Problem with/i, "Working towards resolving challenges in");
+                return "• " + clean;
+            } else if (style === "executive") {
+                return clean;
+            }
+            return "• " + clean;
+        });
+
+        if (style === "executive") {
+            field.value = processedLines.join(" ");
+        } else {
+            field.value = processedLines.join("\n");
+        }
+
+        alert("Text enhanced! Spelling corrected, grammar fixed, and phrased professionally.");
+    }
+
+    function formatTargetField(input, type) {
+        if (!input) return;
+        let val = input.value.trim();
+        if (!val) return;
+
+        let numVal = parseFloat(val.replace(/[^\d.]/g, ''));
+        if (isNaN(numVal)) return;
+
+        if (type === 'secs') {
+            input.value = numVal + ' secs';
+        } else if (type === 'pct') {
+            input.value = numVal + '%';
+        } else {
+            input.value = numVal;
+        }
+    }
+
+    function calculateMetrics(actual, target, dir, type) {
+        if (isNaN(actual) || isNaN(target) || target === 0) {
+            return { variance: '-', pctScored: '-' };
+        }
+
+        let diff = actual - target;
+        let varStr = (diff > 0 ? '+' : '') + diff.toFixed(2);
+        
+        let pctVal = ((actual / target) * 100).toFixed(1);
+
+        if (type === 'pct') {
+            varStr += '%';
+        } else if (type === 'num' && target > 10) {
+            varStr += 's';
+        }
+
+        return { variance: varStr, pctScored: pctVal + '%' };
+    }
+
+    function calculateLossPer1k() {
+        const txns = parseFloat(document.getElementById('total_transactions').value);
+        const tgRl = parseFloat(document.getElementById('total_tg_rl').value);
+        const targetVal = parseFloat(document.getElementById('target_loss').value);
+
+        const lossInput = document.getElementById('kpi_loss');
+        const statusCell = document.getElementById('status_loss');
+        const varCell = document.getElementById('variance_loss');
+        const pctCell = document.getElementById('pct_loss');
+
+        if (!isNaN(txns) && txns > 0 && !isNaN(tgRl)) {
+            const lossVal = parseFloat(((tgRl / txns) * 1000).toFixed(2));
+            lossInput.value = lossVal;
+
+            if (!isNaN(targetVal)) {
+                let isMet = lossVal <= targetVal;
+                let metrics = calculateMetrics(lossVal, targetVal, 'less', 'num');
+                varCell.textContent = metrics.variance;
+                pctCell.textContent = metrics.pctScored;
+                
+                lossInput.classList.remove('met-text', 'not-met-text');
+                statusCell.classList.remove('met-text', 'not-met-text');
+
+                if (isMet) {
+                    lossInput.classList.add('met-text');
+                    statusCell.classList.add('met-text');
+                    statusCell.textContent = 'MET';
+                } else {
+                    lossInput.classList.add('not-met-text');
+                    statusCell.classList.add('not-met-text');
+                    statusCell.textContent = 'NOT MET';
+                }
+            } else {
+                statusCell.textContent = '-';
+                varCell.textContent = '-';
+                pctCell.textContent = '-';
+                lossInput.classList.remove('met-text', 'not-met-text');
+                statusCell.classList.remove('met-text', 'not-met-text');
+            }
+        } else {
+            lossInput.value = '';
+            statusCell.textContent = '-';
+            varCell.textContent = '-';
+            pctCell.textContent = '-';
+            lossInput.classList.remove('met-text', 'not-met-text');
+            statusCell.classList.remove('met-text', 'not-met-text');
+        }
+
+        updateScorecard();
+    }
+
+    function processKPI(input) {
+        if (!input) return;
+        let val = input.value.trim();
+
+        const tr = input.closest('tr');
+        const type = tr.dataset.type;
+        const dir = tr.dataset.dir;
+        const statusCell = tr.querySelector('.status-cell');
+
+        const varCell = tr.cells[3];
+        const pctCell = tr.cells[4];
+
+        let target = parseFloat(tr.dataset.target);
+        
+        if (tr.id === 'row_aht') {
+            target = parseFloat(document.getElementById('target_aht').value);
+        } else if (tr.id === 'row_shrinkage') {
+            target = parseFloat(document.getElementById('target_shrinkage').value);
+        } else if (tr.id === 'row_productivity') {
+            target = parseFloat(document.getElementById('target_productivity').value);
+        } else if (tr.cells[1].querySelector('input')) {
+            let tVal = tr.cells[1].querySelector('input').value.trim();
+            let parsed = parseFloat(tVal.replace(/[^\d.]/g, ''));
+            if (!isNaN(parsed)) target = parsed;
+        }
+
+        if (!val) {
+            statusCell.textContent = '-';
+            if (varCell) varCell.textContent = '-';
+            if (pctCell) pctCell.textContent = '-';
+            input.classList.remove('met-text', 'not-met-text');
+            statusCell.classList.remove('met-text', 'not-met-text');
+            updateScorecard();
+            return;
+        }
+
+        let numVal = parseFloat(val.replace(/[^\d.]/g, ''));
+        if (isNaN(numVal)) return;
+
+        if (type === 'pct') {
+            input.value = numVal + '%';
+        } else {
+            input.value = numVal + (type === 'num' && tr.dataset.kpi === 'AHT' ? ' secs' : '');
+        }
+
+        if (isNaN(target)) {
+            statusCell.textContent = '-';
+            if (varCell) varCell.textContent = '-';
+            if (pctCell) pctCell.textContent = '-';
+            input.classList.remove('met-text', 'not-met-text');
+            statusCell.classList.remove('met-text', 'not-met-text');
+            updateScorecard();
+            return;
+        }
+
+        let isMet = (dir === 'less') ? (numVal <= target) : (numVal >= target);
+        let metrics = calculateMetrics(numVal, target, dir, type);
+
+        if (varCell) varCell.textContent = metrics.variance;
+        if (pctCell) pctCell.textContent = metrics.pctScored;
+
+        input.classList.remove('met-text', 'not-met-text');
+        statusCell.classList.remove('met-text', 'not-met-text');
+
+        if (isMet) {
+            input.classList.add('met-text');
+            statusCell.classList.add('met-text');
+            statusCell.textContent = 'MET';
+        } else {
+            input.classList.add('not-met-text');
+            statusCell.classList.add('not-met-text');
+            statusCell.textContent = 'NOT MET';
+        }
+
+        updateScorecard();
+    }
+
+    /* Fixed Bullet Formatting for HTML Email Preview */
+    function formatBulletList(rawText) {
+        if (!rawText || !rawText.trim()) return '<li style="margin-bottom: 4px; font-size: 13px;">None</li>';
+        
+        const lines = rawText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        if (lines.length === 0) return '<li style="margin-bottom: 4px; font-size: 13px;">None</li>';
+
+        return lines.map(line => {
+            let cleanLine = line.replace(/^[•\-\*]\s*/, '').replace(/^\d+[\.\)]\s*/, '').trim();
+            if (!cleanLine) cleanLine = line;
+            return `<li style="margin-bottom: 4px; font-size: 13px;">${cleanLine}</li>`;
+        }).join('');
+    }
+
+    function generateEmailPreview() {
+        const fullName = document.getElementById('employeeName').value.trim() || 'Employee';
+        const firstName = fullName.split(' ')[0];
+        const lob = document.getElementById('lob').value || 'N/A';
+        const month = document.getElementById('monthSelect').value || 'Month';
+        const year = document.getElementById('yearInput').value || 'Year';
+        const date = document.getElementById('oneOnOneDate').value;
+        const voeText = document.getElementById('voe').value || '';
+        const obsText = document.getElementById('observations').value || '';
+        const fbText = document.getElementById('feedback').value || '';
+
+        const scorecardData = updateScorecard();
+
+        const subjectString = `1-on-1 Performance Summary | ${fullName} - ${lob} - ${month} ${year}`;
+        document.getElementById('subjectText').innerText = subjectString;
+
+        let discRowsHTML = '';
+        document.querySelectorAll('.disc-row').forEach(row => {
+            const cat = row.dataset.category;
+            const qSelect = row.querySelector('.q-select');
+            const qRating = row.querySelector('.q-rating');
+            
+            const qVal = qSelect.value ? qSelect.value : 'No question selected';
+            const rVal = qRating.value ? `${qRating.value} / 4` : 'N/A';
+
+            if (qSelect.value) {
+                discRowsHTML += `
+                    <tr>
+                        <td style="padding: 5px 8px; border: 1px solid #cccccc; vertical-align: middle; font-size: 12px;"><strong>${cat}</strong></td>
+                        <td style="padding: 5px 8px; border: 1px solid #cccccc; vertical-align: middle; font-size: 12px;">${qVal}</td>
+                        <td style="padding: 5px 8px; border: 1px solid #cccccc; text-align: center; vertical-align: middle; font-size: 12px;"><strong>${rVal}</strong></td>
+                    </tr>
+                `;
+            }
+        });
+
+        if (!discRowsHTML) {
+            discRowsHTML = `<tr><td colspan="3" style="padding: 6px; border: 1px solid #cccccc; text-align: center; font-size: 12px;">No discussion questions selected.</td></tr>`;
+        }
+
+        let kpiRowsHTML = '';
+        document.querySelectorAll('#kpiTable tbody tr').forEach(tr => {
+            const nameInput = tr.cells[0].querySelector('input');
+            const name = nameInput ? nameInput.value : tr.cells[0].innerText;
+            
+            let target = tr.cells[1].innerText;
+            const targetInput = tr.cells[1].querySelector('input');
+            if (targetInput) {
+                target = targetInput.value ? targetInput.value : '-';
+            }
+
+            const actualInput = tr.cells[2].querySelector('input');
+            const inputVal = actualInput ? (actualInput.value || 'N/A') : tr.cells[2].innerText;
+
+            const varianceText = tr.cells[3] ? tr.cells[3].textContent : '-';
+            const pctText = tr.cells[4] ? tr.cells[4].textContent : '-';
+
+            const statusCell = tr.cells[5];
+            const statusText = statusCell ? statusCell.textContent : '-';
+
+            let colorStyle = '#333333';
+            if (statusText === 'MET') colorStyle = '#27ae60';
+            if (statusText === 'NOT MET') colorStyle = '#c0392b';
+
+            kpiRowsHTML += `
+                <tr>
+                    <td style="padding: 4px 6px; border: 1px solid #b0b0b0; text-align: left; vertical-align: middle; white-space: nowrap; font-size: 11px;">${name}</td>
+                    <td style="padding: 4px 6px; border: 1px solid #b0b0b0; text-align: center; vertical-align: middle; white-space: nowrap; font-size: 11px;">${target}</td>
+                    <td style="padding: 4px 6px; border: 1px solid #b0b0b0; text-align: center; vertical-align: middle; font-weight: bold; color: ${colorStyle}; white-space: nowrap; font-size: 11px;">${inputVal}</td>
+                    <td style="padding: 4px 6px; border: 1px solid #b0b0b0; text-align: center; vertical-align: middle; white-space: nowrap; font-size: 11px;">${varianceText}</td>
+                    <td style="padding: 4px 6px; border: 1px solid #b0b0b0; text-align: center; vertical-align: middle; white-space: nowrap; font-size: 11px;">${pctText}</td>
+                    <td style="padding: 4px 6px; border: 1px solid #b0b0b0; text-align: center; vertical-align: middle; font-weight: bold; color: ${colorStyle}; white-space: nowrap; font-size: 11px;">${statusText}</td>
+                </tr>
+            `;
+        });
+
+        const emailHTML = `
+            <div style="font-family: Arial, sans-serif; font-size: 13px; line-height: 1.5; color: #333333; max-width: 620px;">
+                <p style="margin: 0 0 12px 0; font-size: 14px;">Hi <strong>${firstName}</strong>,</p>
+                <p style="margin: 0 0 14px 0; font-size: 13px;">Please find below the performance summary from our 1-on-1 discussion for <strong>${month} ${year}</strong>.</p>
+                
+                <h4 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 4px; margin: 18px 0 10px 0; font-size: 14px;">Monthly 1-on-1 Summary</h4>
+                
+                <table style="width: 100%; margin-bottom: 15px; border-collapse: collapse; font-size: 12px;">
+                    <tr><td style="padding: 2px 0;"><strong>Name:</strong> ${fullName}</td><td style="padding: 2px 0;"><strong>LOB:</strong> ${lob}</td></tr>
+                    <tr><td style="padding: 2px 0;"><strong>Month:</strong> ${month} ${year}</td><td style="padding: 2px 0;"><strong>Date:</strong> ${date}</td></tr>
+                </table>
+
+                <h4 style="color: #2c3e50; margin: 18px 0 8px 0; font-size: 14px;">1-on-1 Discussion Topics & Ratings</h4>
+                <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; text-align: left; border: 1px solid #cccccc; margin-bottom: 15px;">
+                    <thead style="background-color: #f2f2f2;">
+                        <tr>
+                            <th style="width: 25%; padding: 5px 8px; border: 1px solid #cccccc; font-size: 11px;">Category</th>
+                            <th style="width: 60%; padding: 5px 8px; border: 1px solid #cccccc; font-size: 11px;">Discussion Question</th>
+                            <th style="width: 15%; padding: 5px 8px; border: 1px solid #cccccc; text-align: center; font-size: 11px;">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${discRowsHTML}
+                    </tbody>
+                </table>
+
+                <h4 style="color: #2c3e50; margin: 18px 0 8px 0; font-size: 14px;">Voice of Employee (VOE)</h4>
+                <ul style="padding-left: 18px; margin: 0 0 15px 0;">
+                    ${formatBulletList(voeText)}
+                </ul>
+
+                <h4 style="color: #2c3e50; margin: 18px 0 8px 0; font-size: 14px;">KPI Performance Summary</h4>
+                
+                <div style="background: #f8f9fa; border: 1px solid #cccccc; padding: 8px 12px; margin-bottom: 10px; font-size: 13px; border-left: 4px solid ${scorecardData.colorCode};">
+                    <strong>Overall KPI Score:</strong> <span style="color: ${scorecardData.colorCode}; font-weight: bold;">${scorecardData.metKPIs} / ${scorecardData.totalKPIs} Met (${scorecardData.pctVal}%)</span>
+                </div>
+
+                <table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse; width: 100%; border: 1px solid #b0b0b0; margin-bottom: 15px;">
+                    <thead style="background-color: #e2e8f0;">
+                        <tr>
+                            <th style="padding: 5px 6px; border: 1px solid #b0b0b0; color: #111111; text-align: left; font-size: 11px;">Metric</th>
+                            <th style="padding: 5px 6px; border: 1px solid #b0b0b0; color: #111111; text-align: center; font-size: 11px;">Target</th>
+                            <th style="padding: 5px 6px; border: 1px solid #b0b0b0; color: #111111; text-align: center; font-size: 11px;">Actual</th>
+                            <th style="padding: 5px 6px; border: 1px solid #b0b0b0; color: #111111; text-align: center; font-size: 11px;">Variance</th>
+                            <th style="padding: 5px 6px; border: 1px solid #b0b0b0; color: #111111; text-align: center; font-size: 11px;">% Scored</th>
+                            <th style="padding: 5px 6px; border: 1px solid #b0b0b0; color: #111111; text-align: center; font-size: 11px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${kpiRowsHTML}
+                    </tbody>
+                </table>
+
+                <h4 style="color: #2c3e50; margin: 18px 0 8px 0; font-size: 14px;">Observations</h4>
+                <ul style="padding-left: 18px; margin: 0 0 15px 0;">
+                    ${formatBulletList(obsText)}
+                </ul>
+
+                <h4 style="color: #2c3e50; margin: 18px 0 8px 0; font-size: 14px;">Feedback & Appreciation</h4>
+                <ul style="padding-left: 18px; margin: 0 0 15px 0;">
+                    ${formatBulletList(fbText)}
+                </ul>
+            </div>
+        `;
+
+        document.getElementById('emailContent').innerHTML = emailHTML;
+        document.getElementById('emailPreview').style.display = 'block';
+        document.getElementById('emailPreview').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copySubjectLine() {
+        const subjectText = document.getElementById('subjectText').innerText;
+        navigator.clipboard.writeText(subjectText).then(() => {
+            alert('Subject line copied to clipboard!');
+        }).catch(() => {
+            alert('Failed to copy subject line automatically.');
+        });
+    }
+
+    function copyToClipboard() {
+        const emailDiv = document.getElementById('emailContent');
+        const range = document.createRange();
+        range.selectNode(emailDiv);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        
+        try {
+            document.execCommand('copy');
+            alert('Formatted summary copied! You can now paste (Ctrl+V) directly into your email body.');
+        } catch (err) {
+            alert('Failed to copy. Please manually select and copy the text.');
+        }
+        window.getSelection().removeAllRanges();
+    }
+
+    function clearForm() {
+        if (confirm("Are you sure you want to clear all fields?")) {
+            document.getElementById('oneOnOneForm').reset();
+            document.querySelectorAll('.status-cell').forEach(el => {
+                el.textContent = '-';
+                el.className = 'status-cell';
+            });
+            document.querySelectorAll('.kpi-input').forEach(el => {
+                el.className = 'kpi-input';
+            });
+            document.getElementById('emailPreview').style.display = 'none';
+            window.onload();
+        }
+    }
+</script>
+
+</body>
+</html>
