@@ -25,7 +25,7 @@
         }
 
         .container {
-            max-width: 1050px;
+            max-width: 1000px;
             margin: 0 auto;
             background: #ffffff;
             padding: 30px;
@@ -49,9 +49,6 @@
             margin-bottom: 15px;
             border-left: 4px solid var(--accent-color);
             padding-left: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .grid-2 {
@@ -118,20 +115,14 @@
             font-weight: bold;
         }
 
-        .kpi-input, .kpi-table input[type="text"], .kpi-table input[type="number"], .kpi-table select {
-            width: 95%;
-            max-width: 120px;
+        .kpi-input, .kpi-table input[type="text"], .kpi-table input[type="number"] {
+            width: 90%;
+            max-width: 110px;
             text-align: center;
             font-weight: bold;
             box-sizing: border-box;
             padding: 5px;
             font-size: 0.85rem;
-        }
-
-        .kpi-table input.kpi-name-input {
-            max-width: 100%;
-            text-align: left;
-            font-weight: normal;
         }
 
         .status-cell {
@@ -172,21 +163,6 @@
         .scorecard-val {
             font-size: 1.15rem;
             font-weight: bold;
-        }
-
-        .add-kpi-card {
-            background: #eef7fc;
-            border: 1px solid var(--accent-color);
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .add-kpi-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
-            gap: 10px;
-            align-items: end;
         }
 
         .bullet-input {
@@ -259,35 +235,6 @@
             background-color: #1b5e20;
         }
 
-        .btn-add {
-            background-color: #27ae60;
-            color: white;
-            font-size: 0.88rem;
-            padding: 8px 14px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-add:hover {
-            background-color: #219150;
-        }
-
-        .btn-delete {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.75rem;
-        }
-
-        .btn-delete:hover {
-            background-color: #c0392b;
-        }
-
         .btn-container {
             display: flex;
             gap: 10px;
@@ -321,6 +268,41 @@
 
         .btn-secondary:hover {
             background-color: #c0392b;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .custom-kpi-panel {
+            background: #f0f4f8;
+            border: 1px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .custom-kpi-panel h5 {
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .custom-kpi-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: center;
         }
 
         .subject-box {
@@ -379,10 +361,10 @@
                     <option value="">Select LOB</option>
                     <option value="FL Chat">FL Chat</option>
                     <option value="FL Voice">FL Voice</option>
-                    <option value="FL support">FL support</option>
+                    <option value="FL Queues">FL Queues</option>
                     <option value="SC Queues">SC Queues</option>
+                    <option value="SC Voice">SC Voice</option>
                     <option value="SC Chat">SC Chat</option>
-                    <option value="SC support">SC support</option>
                 </select>
             </div>
         </div>
@@ -422,13 +404,13 @@
                 <tr class="disc-row" data-category="Engagement & Well-being">
                     <td><strong>Engagement & Well-being</strong></td>
                     <td>
-                        <select class="q-select" style="width: 100%;">
+                        <select class="q-select" id="q_engagement" style="width: 100%;">
                             <option value="">-- Select Question --</option>
                             <option value="Q1: How are you feeling about work overall this week/month — motivated, stressed, or somewhere in between?">Q1: How are you feeling about work overall this week/month — motivated, stressed, or somewhere in between?</option>
                         </select>
                     </td>
                     <td>
-                        <select class="q-rating" style="width: 100%;">
+                        <select class="q-rating" id="r_engagement" style="width: 100%;">
                             <option value="">Rate</option>
                             <option value="1">1 (Lowest)</option>
                             <option value="2">2</option>
@@ -440,14 +422,14 @@
                 <tr class="disc-row" data-category="Support">
                     <td><strong>Support</strong></td>
                     <td>
-                        <select class="q-select" style="width: 100%;">
+                        <select class="q-select" id="q_support" style="width: 100%;">
                             <option value="">-- Select Question --</option>
                             <option value="Q1: Do you feel you had the right information and support to do your job effectively?">Q1: Do you feel you had the right information and support to do your job effectively?</option>
                             <option value="Q2: Is there anything blocking your performance right now that we should address?">Q2: Is there anything blocking your performance right now that we should address?</option>
                         </select>
                     </td>
                     <td>
-                        <select class="q-rating" style="width: 100%;">
+                        <select class="q-rating" id="r_support" style="width: 100%;">
                             <option value="">Rate</option>
                             <option value="1">1 (Lowest)</option>
                             <option value="2">2</option>
@@ -459,7 +441,7 @@
                 <tr class="disc-row" data-category="Learning">
                     <td><strong>Learning</strong></td>
                     <td>
-                        <select class="q-select" style="width: 100%;">
+                        <select class="q-select" id="q_learning" style="width: 100%;">
                             <option value="">-- Select Question --</option>
                             <option value="Q1: What went well in your interactions this month? Any tasks or projects you're particularly proud of?">Q1: What went well in your interactions this month? Any tasks or projects you're particularly proud of?</option>
                             <option value="Q2: Any challenges you faced while managing operations or interactions?">Q2: Any challenges you faced while managing operations or interactions?</option>
@@ -469,7 +451,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="q-rating" style="width: 100%;">
+                        <select class="q-rating" id="r_learning" style="width: 100%;">
                             <option value="">Rate</option>
                             <option value="1">1 (Lowest)</option>
                             <option value="2">2</option>
@@ -481,7 +463,7 @@
                 <tr class="disc-row" data-category="Aspirations & Growth">
                     <td><strong>Aspirations & Growth</strong></td>
                     <td>
-                        <select class="q-select" style="width: 100%;">
+                        <select class="q-select" id="q_aspirations" style="width: 100%;">
                             <option value="">-- Select Question --</option>
                             <option value="Q1: What skill or area would you like to improve over the next month?">Q1: What skill or area would you like to improve over the next month?</option>
                             <option value="Q2: Do you have clear understanding of team operational priorities and goals?">Q2: Do you have clear understanding of team operational priorities and goals?</option>
@@ -489,7 +471,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="q-rating" style="width: 100%;">
+                        <select class="q-rating" id="r_aspirations" style="width: 100%;">
                             <option value="">Rate</option>
                             <option value="1">1 (Lowest)</option>
                             <option value="2">2</option>
@@ -517,48 +499,7 @@
         </div>
 
         <!-- KPI Performance Summary -->
-        <div class="section-title">
-            <span>KPI Performance Summary</span>
-        </div>
-
-        <!-- Add Custom KPI Form -->
-        <div class="add-kpi-card">
-            <strong style="color: var(--primary-color); display: block; margin-bottom: 10px;">➕ Add Additional KPI Field</strong>
-            <div class="add-kpi-grid">
-                <div>
-                    <label style="font-size:0.78rem;">KPI Name</label>
-                    <input type="text" id="new_kpi_name" placeholder="e.g. First Response Time" style="width:100%; max-width:none; text-align:left;">
-                </div>
-                <div>
-                    <label style="font-size:0.78rem;">Format</label>
-                    <select id="new_kpi_type" style="width:100%; max-width:none;">
-                        <option value="num">Number</option>
-                        <option value="pct">Percentage (%)</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="font-size:0.78rem;">Goal Direction</label>
-                    <select id="new_kpi_dir" style="width:100%; max-width:none;">
-                        <option value="more">Higher is Better (≥ Target)</option>
-                        <option value="less">Lower is Better (≤ Target)</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="font-size:0.78rem;">Target Value</label>
-                    <input type="text" id="new_kpi_target" placeholder="e.g. 95 or 300" style="width:100%; max-width:none;">
-                </div>
-                <div>
-                    <label style="font-size:0.78rem;">Preserve KPI</label>
-                    <select id="new_kpi_preserve" style="width:100%; max-width:none;">
-                        <option value="true">Yes (Save permanently)</option>
-                        <option value="false">No (This form only)</option>
-                    </select>
-                </div>
-                <div>
-                    <button type="button" class="btn-add" onclick="addNewKPIFromForm()">Insert KPI</button>
-                </div>
-            </div>
-        </div>
+        <div class="section-title">KPI Performance Summary</div>
 
         <!-- KPI Scorecard Banner -->
         <div class="scorecard-box">
@@ -569,18 +510,17 @@
         <table class="kpi-table" id="kpiTable">
             <thead>
                 <tr>
-                    <th style="text-align: left; width: 28%;">Metric</th>
-                    <th style="width: 14%;">Target</th>
-                    <th style="width: 15%;">Actual Score</th>
-                    <th style="width: 13%;">Variance</th>
-                    <th style="width: 12%;">% Scored</th>
-                    <th style="width: 12%;">Status</th>
-                    <th style="width: 6%;">Action</th>
+                    <th style="text-align: left;">Metric</th>
+                    <th>Target</th>
+                    <th>Actual Score</th>
+                    <th>Variance</th>
+                    <th>% Scored</th>
+                    <th>Status</th>
+                    <th style="width: 60px;">Action</th>
                 </tr>
             </thead>
             <tbody id="kpiTableBody">
-                <!-- System Default Volume Metrics -->
-                <tr data-non-kpi="true">
+                <tr id="row_txns">
                     <td style="text-align: left;">Total Transactions</td>
                     <td>-</td>
                     <td><input type="number" id="total_transactions" oninput="calculateLossPer1k()" placeholder="e.g. 500"></td>
@@ -589,7 +529,7 @@
                     <td>-</td>
                     <td>-</td>
                 </tr>
-                <tr data-non-kpi="true">
+                <tr id="row_tgrl">
                     <td style="text-align: left;">Total TG & RLs</td>
                     <td>-</td>
                     <td><input type="number" id="total_tg_rl" oninput="calculateLossPer1k()" placeholder="e.g. 10"></td>
@@ -598,19 +538,17 @@
                     <td>-</td>
                     <td>-</td>
                 </tr>
-
-                <!-- Default Evaluated KPIs -->
-                <tr id="row_loss" data-kpi="Loss per 1k Transactions" data-type="num" data-dir="less" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Loss per 1k Transactions" onchange="saveKPIStructure()"></td>
+                <tr id="row_loss" data-kpi="Loss per 1k Transactions" data-type="num" data-dir="less">
+                    <td style="text-align: left;">Loss per 1k Transactions</td>
                     <td><input type="text" id="target_loss" onblur="formatTargetField(this, 'num')" oninput="calculateLossPer1k()" placeholder="Enter Target"></td>
-                    <td><input type="text" id="kpi_loss" class="kpi-input" readonly placeholder="Auto-calc"></td>
+                    <td><input type="text" id="kpi_loss" class="kpi-input" readonly placeholder="Auto-calculated"></td>
                     <td id="variance_loss">-</td>
                     <td id="pct_loss">-</td>
                     <td id="status_loss" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr id="row_aht" data-kpi="AHT" data-type="num" data-dir="less" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="AHT (seconds)" onchange="saveKPIStructure()"></td>
+                <tr id="row_aht" data-kpi="AHT" data-type="num" data-dir="less">
+                    <td style="text-align: left;">AHT (seconds)</td>
                     <td><input type="text" id="target_aht" onblur="formatTargetField(this, 'secs')" oninput="processKPI(document.getElementById('kpi_aht'))" placeholder="Enter Secs"></td>
                     <td><input type="text" id="kpi_aht" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 980"></td>
                     <td id="variance_aht">-</td>
@@ -618,26 +556,26 @@
                     <td id="status_aht" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="Transfers" data-type="pct" data-target="4" data-dir="less" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Transfers (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="< 4%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_transfers" data-kpi="Transfers" data-type="pct" data-target="4" data-dir="less">
+                    <td style="text-align: left;">Transfers (%)</td>
+                    <td>&lt; 4%</td>
                     <td><input type="text" id="kpi_transfers" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 3.2"></td>
                     <td id="variance_transfers">-</td>
                     <td id="pct_transfers">-</td>
                     <td id="status_transfers" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="Support Placement" data-type="pct" data-target="5" data-dir="less" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Support Placement (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="< 5%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_support" data-kpi="Support Placement" data-type="pct" data-target="5" data-dir="less">
+                    <td style="text-align: left;">Support Placement (%)</td>
+                    <td>&lt; 5%</td>
                     <td><input type="text" id="kpi_support" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 4.1"></td>
                     <td id="variance_support">-</td>
                     <td id="pct_support">-</td>
                     <td id="status_support" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr id="row_productivity" data-kpi="Productivity" data-type="pct" data-dir="more" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Productivity (%)" onchange="saveKPIStructure()"></td>
+                <tr id="row_productivity" data-kpi="Productivity" data-type="pct" data-dir="more">
+                    <td style="text-align: left;">Productivity (%)</td>
                     <td><input type="text" id="target_productivity" onblur="formatTargetField(this, 'pct')" oninput="processKPI(document.getElementById('kpi_productivity'))" placeholder="Enter Target %"></td>
                     <td><input type="text" id="kpi_productivity" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 94"></td>
                     <td id="variance_productivity">-</td>
@@ -645,8 +583,8 @@
                     <td id="status_productivity" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr id="row_shrinkage" data-kpi="In-Office Shrinkage" data-type="pct" data-dir="less" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="In-Office Shrinkage (%)" onchange="saveKPIStructure()"></td>
+                <tr id="row_shrinkage" data-kpi="In-Office Shrinkage" data-type="pct" data-dir="less">
+                    <td style="text-align: left;">In-Office Shrinkage (%)</td>
                     <td><input type="text" id="target_shrinkage" onblur="formatTargetField(this, 'pct')" oninput="processKPI(document.getElementById('kpi_shrinkage'))" placeholder="Enter Target %"></td>
                     <td><input type="text" id="kpi_shrinkage" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 10"></td>
                     <td id="variance_shrinkage">-</td>
@@ -654,45 +592,45 @@
                     <td id="status_shrinkage" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="Absence" data-type="pct" data-target="12.50" data-dir="less" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Absence (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="< 12.50%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_absence" data-kpi="Absence" data-type="pct" data-target="12.50" data-dir="less">
+                    <td style="text-align: left;">Absence (%)</td>
+                    <td>&lt; 12.50%</td>
                     <td><input type="text" id="kpi_absence" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 2"></td>
                     <td id="variance_absence">-</td>
                     <td id="pct_absence">-</td>
                     <td id="status_absence" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="CSAT Overall" data-type="pct" data-target="68" data-dir="more" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="CSAT Score - Overall (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="68%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_csat_overall" data-kpi="CSAT Overall" data-type="pct" data-target="68" data-dir="more">
+                    <td style="text-align: left;">CSAT Score - Overall (%)</td>
+                    <td>68%</td>
                     <td><input type="text" id="kpi_csat_overall" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 72"></td>
                     <td id="variance_csat_overall">-</td>
                     <td id="pct_csat_overall">-</td>
                     <td id="status_csat_overall" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="CSAT Booking" data-type="pct" data-target="70" data-dir="more" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="CSAT Score - Booking (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="70%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_csat_booking" data-kpi="CSAT Booking" data-type="pct" data-target="70" data-dir="more">
+                    <td style="text-align: left;">CSAT Score - Booking (%)</td>
+                    <td>70%</td>
                     <td><input type="text" id="kpi_csat_booking" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 75"></td>
                     <td id="variance_csat_booking">-</td>
                     <td id="pct_csat_booking">-</td>
                     <td id="status_csat_booking" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="CSAT English" data-type="pct" data-target="65" data-dir="more" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="CSAT Score - English (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="65%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_csat_english" data-kpi="CSAT English" data-type="pct" data-target="65" data-dir="more">
+                    <td style="text-align: left;">CSAT Score - English (%)</td>
+                    <td>65%</td>
                     <td><input type="text" id="kpi_csat_english" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 68"></td>
                     <td id="variance_csat_english">-</td>
                     <td id="pct_csat_english">-</td>
                     <td id="status_csat_english" class="status-cell">-</td>
                     <td>-</td>
                 </tr>
-                <tr data-kpi="Quality Scores" data-type="pct" data-target="92.5" data-dir="more" data-system="true">
-                    <td style="text-align: left;"><input type="text" class="kpi-name-input" value="Quality Scores (%)" onchange="saveKPIStructure()"></td>
-                    <td><input type="text" value="92.5%" onblur="updateRowTargetFromInput(this)"></td>
+                <tr id="row_quality" data-kpi="Quality Scores" data-type="pct" data-target="92.5" data-dir="more">
+                    <td style="text-align: left;">Quality Scores (%)</td>
+                    <td>92.5%</td>
                     <td><input type="text" id="kpi_quality" class="kpi-input" onblur="processKPI(this)" placeholder="e.g. 95"></td>
                     <td id="variance_quality">-</td>
                     <td id="pct_quality">-</td>
@@ -701,6 +639,25 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Custom KPI Creator -->
+        <div class="custom-kpi-panel">
+            <h5>➕ Add Custom KPI Metric</h5>
+            <div class="custom-kpi-grid">
+                <input type="text" id="new_kpi_name" placeholder="Metric Name (e.g. FCR)">
+                <input type="text" id="new_kpi_target" placeholder="Target (e.g. 85)">
+                <select id="new_kpi_type">
+                    <option value="pct">Percentage (%)</option>
+                    <option value="num">Number</option>
+                    <option value="secs">Seconds / Time</option>
+                </select>
+                <select id="new_kpi_dir">
+                    <option value="more">Higher is Better</option>
+                    <option value="less">Lower is Better</option>
+                </select>
+                <button type="button" class="btn-primary" style="padding: 8px 14px; font-size: 0.85rem;" onclick="addCustomKPI()">Add Metric</button>
+            </div>
+        </div>
 
         <!-- Qualitative Observations & Feedback -->
         <div class="section-title">Qualitative Observations & Feedback</div>
@@ -737,7 +694,7 @@
 
         <!-- Buttons -->
         <div class="btn-container">
-            <button type="button" class="btn-secondary" onclick="clearForm()">Clear Everything</button>
+            <button type="button" class="btn-secondary" onclick="clearForm()">Clear Form Data</button>
             <button type="button" class="btn-primary" onclick="generateEmailPreview()">Generate Email Summary</button>
         </div>
     </form>
@@ -765,7 +722,7 @@
 </div>
 
 <script>
-    let customKpiCounter = 0;
+    let customKPIs = [];
 
     window.onload = function() {
         const today = new Date().toISOString().split('T')[0];
@@ -776,145 +733,204 @@
         document.getElementById('monthSelect').value = currentMonth;
         document.getElementById('yearInput').value = dateObj.getFullYear();
 
-        loadPreservedKPIs();
+        loadSettingsAndState();
         updateScorecard();
+        attachAutoSaveListeners();
     };
 
-    /* Dynamic Target Update Helper */
-    function updateRowTargetFromInput(input) {
-        const tr = input.closest('tr');
-        if (!tr) return;
-        let val = input.value.trim();
-        let num = parseFloat(val.replace(/[^\d.]/g, ''));
-        if (!isNaN(num)) {
-            tr.dataset.target = num;
-        }
-        const actualInput = tr.querySelector('.kpi-input');
-        if (actualInput && actualInput.value) {
-            processKPI(actualInput);
-        } else {
-            updateScorecard();
-        }
-        saveKPIStructure();
+    /* Settings & Persistence Storage */
+    function saveSettingsAndState() {
+        const formData = {
+            employeeName: document.getElementById('employeeName').value,
+            lob: document.getElementById('lob').value,
+            monthSelect: document.getElementById('monthSelect').value,
+            yearInput: document.getElementById('yearInput').value,
+            oneOnOneDate: document.getElementById('oneOnOneDate').value,
+            
+            // Targets
+            target_loss: document.getElementById('target_loss')?.value || '',
+            target_aht: document.getElementById('target_aht')?.value || '',
+            target_productivity: document.getElementById('target_productivity')?.value || '',
+            target_shrinkage: document.getElementById('target_shrinkage')?.value || '',
+
+            // Values
+            total_transactions: document.getElementById('total_transactions')?.value || '',
+            total_tg_rl: document.getElementById('total_tg_rl')?.value || '',
+            kpi_aht: document.getElementById('kpi_aht')?.value || '',
+            kpi_transfers: document.getElementById('kpi_transfers')?.value || '',
+            kpi_support: document.getElementById('kpi_support')?.value || '',
+            kpi_productivity: document.getElementById('kpi_productivity')?.value || '',
+            kpi_shrinkage: document.getElementById('kpi_shrinkage')?.value || '',
+            kpi_absence: document.getElementById('kpi_absence')?.value || '',
+            kpi_csat_overall: document.getElementById('kpi_csat_overall')?.value || '',
+            kpi_csat_booking: document.getElementById('kpi_csat_booking')?.value || '',
+            kpi_csat_english: document.getElementById('kpi_csat_english')?.value || '',
+            kpi_quality: document.getElementById('kpi_quality')?.value || '',
+
+            // Discussion Ratings & Questions
+            q_engagement: document.getElementById('q_engagement')?.value || '',
+            r_engagement: document.getElementById('r_engagement')?.value || '',
+            q_support: document.getElementById('q_support')?.value || '',
+            r_support: document.getElementById('r_support')?.value || '',
+            q_learning: document.getElementById('q_learning')?.value || '',
+            r_learning: document.getElementById('r_learning')?.value || '',
+            q_aspirations: document.getElementById('q_aspirations')?.value || '',
+            r_aspirations: document.getElementById('r_aspirations')?.value || '',
+
+            // Text Areas
+            voe: document.getElementById('voe')?.value || '',
+            observations: document.getElementById('observations')?.value || '',
+            feedback: document.getElementById('feedback')?.value || '',
+
+            // Custom KPIs list
+            customKPIs: customKPIs
+        };
+
+        // Save values of custom KPIs
+        customKPIs.forEach(kpi => {
+            formData[`target_${kpi.id}`] = document.getElementById(`target_${kpi.id}`)?.value || '';
+            formData[`kpi_${kpi.id}`] = document.getElementById(`kpi_${kpi.id}`)?.value || '';
+        });
+
+        localStorage.setItem('oneOnOneFormData', JSON.stringify(formData));
     }
 
-    /* KPI Addition & LocalStorage Preservation */
-    function addNewKPIFromForm() {
+    function loadSettingsAndState() {
+        const saved = localStorage.getItem('oneOnOneFormData');
+        if (!saved) return;
+
+        const data = JSON.parse(saved);
+
+        // Restore General Info
+        if (data.employeeName) document.getElementById('employeeName').value = data.employeeName;
+        if (data.lob) document.getElementById('lob').value = data.lob;
+        if (data.monthSelect) document.getElementById('monthSelect').value = data.monthSelect;
+        if (data.yearInput) document.getElementById('yearInput').value = data.yearInput;
+        if (data.oneOnOneDate) document.getElementById('oneOnOneDate').value = data.oneOnOneDate;
+
+        // Restore Standard Targets
+        if (data.target_loss) document.getElementById('target_loss').value = data.target_loss;
+        if (data.target_aht) document.getElementById('target_aht').value = data.target_aht;
+        if (data.target_productivity) document.getElementById('target_productivity').value = data.target_productivity;
+        if (data.target_shrinkage) document.getElementById('target_shrinkage').value = data.target_shrinkage;
+
+        // Restore Standard Actuals
+        if (data.total_transactions) document.getElementById('total_transactions').value = data.total_transactions;
+        if (data.total_tg_rl) document.getElementById('total_tg_rl').value = data.total_tg_rl;
+        if (data.kpi_aht) document.getElementById('kpi_aht').value = data.kpi_aht;
+        if (data.kpi_transfers) document.getElementById('kpi_transfers').value = data.kpi_transfers;
+        if (data.kpi_support) document.getElementById('kpi_support').value = data.kpi_support;
+        if (data.kpi_productivity) document.getElementById('kpi_productivity').value = data.kpi_productivity;
+        if (data.kpi_shrinkage) document.getElementById('kpi_shrinkage').value = data.kpi_shrinkage;
+        if (data.kpi_absence) document.getElementById('kpi_absence').value = data.kpi_absence;
+        if (data.kpi_csat_overall) document.getElementById('kpi_csat_overall').value = data.kpi_csat_overall;
+        if (data.kpi_csat_booking) document.getElementById('kpi_csat_booking').value = data.kpi_csat_booking;
+        if (data.kpi_csat_english) document.getElementById('kpi_csat_english').value = data.kpi_csat_english;
+        if (data.kpi_quality) document.getElementById('kpi_quality').value = data.kpi_quality;
+
+        // Restore Discussion Topics
+        if (data.q_engagement) document.getElementById('q_engagement').value = data.q_engagement;
+        if (data.r_engagement) document.getElementById('r_engagement').value = data.r_engagement;
+        if (data.q_support) document.getElementById('q_support').value = data.q_support;
+        if (data.r_support) document.getElementById('r_support').value = data.r_support;
+        if (data.q_learning) document.getElementById('q_learning').value = data.q_learning;
+        if (data.r_learning) document.getElementById('r_learning').value = data.r_learning;
+        if (data.q_aspirations) document.getElementById('q_aspirations').value = data.q_aspirations;
+        if (data.r_aspirations) document.getElementById('r_aspirations').value = data.r_aspirations;
+
+        // Restore Text Areas
+        if (data.voe) document.getElementById('voe').value = data.voe;
+        if (data.observations) document.getElementById('observations').value = data.observations;
+        if (data.feedback) document.getElementById('feedback').value = data.feedback;
+
+        // Rebuild Custom KPIs
+        if (data.customKPIs && Array.isArray(data.customKPIs)) {
+            data.customKPIs.forEach(kpi => {
+                renderCustomKPIRow(kpi);
+                if (data[`target_${kpi.id}`]) document.getElementById(`target_${kpi.id}`).value = data[`target_${kpi.id}`];
+                if (data[`kpi_${kpi.id}`]) document.getElementById(`kpi_${kpi.id}`).value = data[`kpi_${kpi.id}`];
+                processKPI(document.getElementById(`kpi_${kpi.id}`));
+            });
+        }
+
+        // Process standard rows
+        calculateLossPer1k();
+        document.querySelectorAll('.kpi-input').forEach(input => {
+            if (input.id !== 'kpi_loss') processKPI(input);
+        });
+    }
+
+    function attachAutoSaveListeners() {
+        document.getElementById('oneOnOneForm').addEventListener('input', saveSettingsAndState);
+        document.getElementById('oneOnOneForm').addEventListener('change', saveSettingsAndState);
+    }
+
+    /* Custom KPI Creator Logic */
+    function addCustomKPI() {
         const nameInput = document.getElementById('new_kpi_name');
+        const targetInput = document.getElementById('new_kpi_target');
         const typeSelect = document.getElementById('new_kpi_type');
         const dirSelect = document.getElementById('new_kpi_dir');
-        const targetInput = document.getElementById('new_kpi_target');
-        const preserveSelect = document.getElementById('new_kpi_preserve');
 
-        const kpiName = nameInput.value.trim();
-        if (!kpiName) {
-            alert('Please enter a KPI Name.');
+        const name = nameInput.value.trim();
+        let target = targetInput.value.trim();
+        const type = typeSelect.value;
+        const dir = dirSelect.value;
+
+        if (!name) {
+            alert('Please enter a KPI Metric name.');
             return;
         }
 
-        const type = typeSelect.value;
-        const dir = dirSelect.value;
-        const rawTarget = targetInput.value.trim();
-        const numTarget = parseFloat(rawTarget.replace(/[^\d.]/g, ''));
-        const isPreserved = preserveSelect.value === 'true';
+        const id = 'custom_' + Date.now();
+        const kpiObj = { id, name, target, type, dir };
 
-        addKPIRowToTable({
-            id: 'custom_kpi_' + (++customKpiCounter),
-            name: kpiName,
-            type: type,
-            dir: dir,
-            target: isNaN(numTarget) ? '' : numTarget,
-            rawTargetStr: rawTarget,
-            preserved: isPreserved
-        });
-
-        if (isPreserved) {
-            saveKPIStructure();
-        }
+        customKPIs.push(kpiObj);
+        renderCustomKPIRow(kpiObj);
 
         nameInput.value = '';
         targetInput.value = '';
+
+        saveSettingsAndState();
         updateScorecard();
     }
 
-    function addKPIRowToTable(kpi) {
+    function renderCustomKPIRow(kpiObj) {
         const tbody = document.getElementById('kpiTableBody');
         const tr = document.createElement('tr');
-        tr.id = kpi.id;
-        tr.dataset.kpi = kpi.name;
-        tr.dataset.type = kpi.type;
-        tr.dataset.dir = kpi.dir;
-        tr.dataset.preserved = kpi.preserved ? "true" : "false";
-        if (kpi.target !== '' && !isNaN(kpi.target)) {
-            tr.dataset.target = kpi.target;
+        tr.id = `row_${kpiObj.id}`;
+        tr.dataset.kpi = kpiObj.name;
+        tr.dataset.type = kpiObj.type;
+        tr.dataset.dir = kpiObj.dir;
+        tr.dataset.custom = "true";
+
+        let targetDisplay = kpiObj.target ? kpiObj.target : '-';
+        let typeSuffix = kpiObj.type === 'pct' ? '%' : (kpiObj.type === 'secs' ? ' secs' : '');
+        if (targetDisplay !== '-' && !targetDisplay.endsWith(typeSuffix)) {
+            targetDisplay += typeSuffix;
         }
 
-        let formattedTargetDisplay = kpi.rawTargetStr || (kpi.target ? (kpi.type === 'pct' ? kpi.target + '%' : kpi.target) : '');
-
         tr.innerHTML = `
-            <td style="text-align: left;">
-                <input type="text" class="kpi-name-input" value="${kpi.name}" onchange="saveKPIStructure()">
-            </td>
-            <td>
-                <input type="text" value="${formattedTargetDisplay}" placeholder="Target" onblur="updateRowTargetFromInput(this)">
-            </td>
-            <td>
-                <input type="text" class="kpi-input" onblur="processKPI(this)" placeholder="${kpi.type === 'pct' ? 'e.g. 95' : 'e.g. 10'}">
-            </td>
-            <td class="variance-cell">-</td>
-            <td class="pct-cell">-</td>
-            <td class="status-cell">-</td>
-            <td>
-                <button type="button" class="btn-delete" onclick="deleteKPIRow('${kpi.id}')">✕</button>
-            </td>
+            <td style="text-align: left;">${kpiObj.name} ${kpiObj.type === 'pct' ? '(%)' : ''}</td>
+            <td><input type="text" id="target_${kpiObj.id}" value="${targetDisplay}" onblur="formatTargetField(this, '${kpiObj.type}')" oninput="processKPI(document.getElementById('kpi_${kpiObj.id}'))" placeholder="Target"></td>
+            <td><input type="text" id="kpi_${kpiObj.id}" class="kpi-input" onblur="processKPI(this)" placeholder="Score"></td>
+            <td id="variance_${kpiObj.id}">-</td>
+            <td id="pct_${kpiObj.id}">-</td>
+            <td id="status_${kpiObj.id}" class="status-cell">-</td>
+            <td><button type="button" class="btn-delete" onclick="deleteCustomKPI('${kpiObj.id}')">🗑️ Delete</button></td>
         `;
 
         tbody.appendChild(tr);
     }
 
-    function deleteKPIRow(rowId) {
-        const tr = document.getElementById(rowId);
-        if (tr && confirm('Are you sure you want to remove this KPI?')) {
-            tr.remove();
-            saveKPIStructure();
+    function deleteCustomKPI(id) {
+        if (confirm('Are you sure you want to delete this metric?')) {
+            const row = document.getElementById(`row_${id}`);
+            if (row) row.remove();
+
+            customKPIs = customKPIs.filter(kpi => kpi.id !== id);
+            saveSettingsAndState();
             updateScorecard();
-        }
-    }
-
-    function saveKPIStructure() {
-        let preservedKPIs = [];
-        document.querySelectorAll('#kpiTableBody tr').forEach(tr => {
-            if (tr.dataset.preserved === 'true') {
-                const nameInput = tr.querySelector('.kpi-name-input');
-                const targetInput = tr.cells[1].querySelector('input');
-                
-                preservedKPIs.push({
-                    id: tr.id,
-                    name: nameInput ? nameInput.value : tr.dataset.kpi,
-                    type: tr.dataset.type,
-                    dir: tr.dataset.dir,
-                    target: tr.dataset.target || '',
-                    rawTargetStr: targetInput ? targetInput.value : '',
-                    preserved: true
-                });
-            }
-        });
-        localStorage.setItem('custom_preserved_kpis', JSON.stringify(preservedKPIs));
-    }
-
-    function loadPreservedKPIs() {
-        const saved = localStorage.getItem('custom_preserved_kpis');
-        if (!saved) return;
-
-        try {
-            const list = JSON.parse(saved);
-            list.forEach(kpi => {
-                if (!document.getElementById(kpi.id)) {
-                    addKPIRowToTable(kpi);
-                }
-            });
-        } catch(e) {
-            console.error('Failed to parse preserved KPIs', e);
         }
     }
 
@@ -924,8 +940,6 @@
         let metKPIs = 0;
 
         document.querySelectorAll('#kpiTable tbody tr').forEach(tr => {
-            if (tr.dataset.nonKpi === 'true') return;
-
             const statusCell = tr.querySelector('.status-cell');
             if (statusCell) {
                 const status = statusCell.textContent.trim();
@@ -964,13 +978,10 @@
         let generatedBullets = [];
 
         document.querySelectorAll('.kpi-table tbody tr').forEach(tr => {
-            if (tr.dataset.nonKpi === 'true') return;
-
             const cells = tr.cells;
             if (cells.length < 6) return;
 
-            const nameInput = cells[0].querySelector('input');
-            const metricName = nameInput ? nameInput.value.trim() : cells[0].innerText.trim();
+            const metricName = cells[0].innerText.replace('🗑️ Delete', '').trim();
             
             let targetText = cells[1].innerText.trim();
             const targetInput = cells[1].querySelector('input');
@@ -986,9 +997,9 @@
             const statusText = cells[5].textContent.trim();
 
             if (actualText && actualText !== '-' && actualText !== 'N/A' && targetText && targetText !== '-') {
-                let comparison = statusText === 'NOT MET' ? 'below' : 'meeting / exceeding';
-                if (tr.dataset.dir === 'less' || metricName.toLowerCase().includes('aht') || metricName.toLowerCase().includes('loss')) {
-                    comparison = statusText === 'NOT MET' ? 'higher than' : 'within / beating';
+                let comparison = statusText === 'NOT MET' ? 'higher than' : 'within / beating';
+                if (metricName.toLowerCase().includes('csat') || metricName.toLowerCase().includes('quality') || metricName.toLowerCase().includes('productivity') || tr.dataset.dir === 'more') {
+                    comparison = statusText === 'NOT MET' ? 'lower than' : 'meeting / exceeding';
                 }
 
                 let line = `• ${metricName} is ${comparison} target: against the ${targetText} target, performance was ${actualText} (Variance: ${varianceText}, Scored: ${pctText}).`;
@@ -1011,6 +1022,7 @@
             obsField.value = newSummary;
         }
 
+        saveSettingsAndState();
         alert('KPI Observation Summary auto-generated into the Observations field!');
     }
 
@@ -1103,6 +1115,7 @@
             field.value = processedLines.join("\n");
         }
 
+        saveSettingsAndState();
         alert("Text enhanced! Spelling corrected, grammar fixed, and phrased professionally.");
     }
 
@@ -1196,6 +1209,7 @@
     function processKPI(input) {
         if (!input) return;
         let val = input.value.trim();
+        if (!val) return;
 
         const tr = input.closest('tr');
         const type = tr.dataset.type;
@@ -1213,20 +1227,9 @@
             target = parseFloat(document.getElementById('target_shrinkage').value);
         } else if (tr.id === 'row_productivity') {
             target = parseFloat(document.getElementById('target_productivity').value);
-        } else if (tr.cells[1].querySelector('input')) {
-            let tVal = tr.cells[1].querySelector('input').value.trim();
-            let parsed = parseFloat(tVal.replace(/[^\d.]/g, ''));
-            if (!isNaN(parsed)) target = parsed;
-        }
-
-        if (!val) {
-            statusCell.textContent = '-';
-            if (varCell) varCell.textContent = '-';
-            if (pctCell) pctCell.textContent = '-';
-            input.classList.remove('met-text', 'not-met-text');
-            statusCell.classList.remove('met-text', 'not-met-text');
-            updateScorecard();
-            return;
+        } else if (tr.dataset.custom === "true") {
+            const targetInput = tr.querySelector('td:nth-child(2) input');
+            if (targetInput) target = parseFloat(targetInput.value.replace(/[^\d.]/g, ''));
         }
 
         let numVal = parseFloat(val.replace(/[^\d.]/g, ''));
@@ -1235,7 +1238,7 @@
         if (type === 'pct') {
             input.value = numVal + '%';
         } else {
-            input.value = numVal + (type === 'num' && tr.dataset.kpi === 'AHT' ? ' secs' : '');
+            input.value = numVal + (type === 'secs' || tr.dataset.kpi === 'AHT' ? ' secs' : '');
         }
 
         if (isNaN(target)) {
@@ -1270,7 +1273,6 @@
         updateScorecard();
     }
 
-    /* Fixed Bullet Formatting for HTML Email Preview */
     function formatBulletList(rawText) {
         if (!rawText || !rawText.trim()) return '<li style="margin-bottom: 4px; font-size: 13px;">None</li>';
         
@@ -1325,9 +1327,8 @@
         }
 
         let kpiRowsHTML = '';
-        document.querySelectorAll('#kpiTable tbody tr').forEach(tr => {
-            const nameInput = tr.cells[0].querySelector('input');
-            const name = nameInput ? nameInput.value : tr.cells[0].innerText;
+        document.querySelectorAll('.kpi-table tbody tr').forEach(tr => {
+            const name = tr.cells[0].innerText.replace('🗑️ Delete', '').trim();
             
             let target = tr.cells[1].innerText;
             const targetInput = tr.cells[1].querySelector('input');
@@ -1456,8 +1457,14 @@
     }
 
     function clearForm() {
-        if (confirm("Are you sure you want to clear all fields?")) {
+        if (confirm("Are you sure you want to clear all form fields and saved settings?")) {
+            localStorage.removeItem('oneOnOneFormData');
             document.getElementById('oneOnOneForm').reset();
+            
+            // Delete custom rows
+            document.querySelectorAll('tr[data-custom="true"]').forEach(tr => tr.remove());
+            customKPIs = [];
+
             document.querySelectorAll('.status-cell').forEach(el => {
                 el.textContent = '-';
                 el.className = 'status-cell';
